@@ -16,12 +16,12 @@ import { RecentlyPlayedModule } from './recently-played/recently-played.module';
   isGlobal: true,
 }),
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'Bunniee@123',
-      database: 'bunniee',
+        type: 'postgres',
+        host: process.env.PGHOST,
+        port: Number(process.env.PGPORT),
+        username: process.env.PGUSER,
+        password: process.env.PGPASSWORD,
+        database: process.env.PGDATABASE,
 
       autoLoadEntities: true,
       synchronize: true,
