@@ -23,9 +23,18 @@ export class AlbumsService {
     return await this.albumRepository.save(album);
   }
 
-  async findAll() {
-    return this.albumRepository.find();
-  }
+ async findAll(
+  page = 1,
+  limit = 10,
+) {
+  return this.albumRepository.find({
+    relations: {
+      songs: true,
+    },
+    skip: (page - 1) * limit,
+    take: limit,
+  });
+}
 
   async search(query: string) {
     return this.albumRepository.find({

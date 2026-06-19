@@ -73,11 +73,16 @@ async getTrendingSongs() {
   return this.songsService.getTrendingSongs();
 }
 
-  @Get()
-  async findAll() {
-    return this.songsService.findAll();
-  }
-
+ @Get()
+async findAll(
+  @Query('page') page = 1,
+  @Query('limit') limit = 10,
+) {
+  return this.songsService.findAll(
+    Number(page),
+    Number(limit),
+  );
+}
   @Get('search')
 async search(
   @Query('q') q: string,

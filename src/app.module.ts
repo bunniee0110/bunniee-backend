@@ -8,6 +8,7 @@ import { AlbumsModule } from './albums/albums.module';
 import { StorageModule } from './storage/storage.module';
 import { ConfigModule } from '@nestjs/config';
 import { PlaylistsModule } from './playlists/playlists.module';
+import { RecentlyPlayedModule } from './recently-played/recently-played.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { PlaylistsModule } from './playlists/playlists.module';
     AlbumsModule,
     StorageModule,
     PlaylistsModule,
+    RecentlyPlayedModule,
   ],
 })
 export class AppModule {}

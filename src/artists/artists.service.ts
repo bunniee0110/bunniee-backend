@@ -24,11 +24,16 @@ export class ArtistsService {
     return await this.artistRepository.save(artist);
   }
 
-async findAll() {
+async findAll(
+  page = 1,
+  limit = 10,
+) {
   return this.artistRepository.find({
     relations: {
       songs: true,
     },
+    skip: (page - 1) * limit,
+    take: limit,
   });
 }
 

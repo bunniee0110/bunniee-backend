@@ -26,8 +26,14 @@ async search(
   return this.albumsService.search(q);
 }
 
-  @Get()
-  async findAll() {
-    return this.albumsService.findAll();
-  }
+@Get()
+async findAll(
+  @Query('page') page = 1,
+  @Query('limit') limit = 10,
+) {
+  return this.albumsService.findAll(
+    Number(page),
+    Number(limit),
+  );
+}
 }

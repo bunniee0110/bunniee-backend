@@ -26,8 +26,14 @@ async search(
   return this.artistsService.search(q);
 }
 
-  @Get()
-  async findAll() {
-    return this.artistsService.findAll();
-  }
+ @Get()
+async findAll(
+  @Query('page') page = 1,
+  @Query('limit') limit = 10,
+) {
+  return this.artistsService.findAll(
+    Number(page),
+    Number(limit),
+  );
+}
 }

@@ -163,12 +163,28 @@ async topLikedSongs() {
   });
 }
 
-  async findAll() {
-  return this.songRepository.find({
-    relations: {
-      artist: true,
-      album: true,
-    },
-  });
+async findAll(
+  page = 1,
+  limit = 10,
+) {
+  const [songs, total] =
+    await this.songRepository.findAndCount({
+      relations: {
+        artist: true,
+        album: true,
+      },
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+
+  return {
+    data: songs,
+    total,
+    page,
+    limit,
+    totalPages: Math.ceil(
+      total / limit,
+    ),
+  };
 }
 }
